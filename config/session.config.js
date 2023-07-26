@@ -5,15 +5,15 @@ const MongoStore = mongodbStore(session);
 
 const getMongoStore = () => {
     return new MongoStore({
-        uri: "mongodb://127.0.0.1:27017",
-        databaseName: "online-shop-2",
+        uri: process.env.MONGO_DB_SERVER,
+        databaseName: process.env.APP_DB,
         collection: "sessions",
     });
 }
 
 const sessionConfig = () => {
     return {
-        secret: "Aka03112001",
+        secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
         store: getMongoStore(),
