@@ -1,0 +1,34 @@
+<%- include("../common/includes/head", { title: "Your Checkout!" }) %>
+<link rel="stylesheet" href="/public/static/essential/assets/styles/cart.css">
+<link rel="stylesheet" href="/public/static/essential/assets/styles/responsive/cart.responsive.css">
+
+<script src="https://js.stripe.com/v3/" defer></script>
+</head>
+<body>
+    <%- include("../common/includes/header", { page: "checkout" }) %>
+    <main>
+        <% if(items && items.length > 0) { %>
+            <section id="checkout-section">
+                <ul class="checkout-items">
+                    <% for(const item of items) { %>
+                        <li class="checkout-item">
+                            <%- include("includes/checkout-item", { item }) %>
+                        </li>
+                    <% } %>
+                </ul>
+            </section>
+            <hr />
+            <section>
+                <form action="/checkout" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button class="btn btn-alt"><%= INR.format(totalPrice) %>: Place Order!</button>
+                </form>
+                <p>[NOTE] Your order will be shipped to the address which you specify in your account.</p>
+            </section>
+        <% }  else { %>
+            <img class="utility-img" src="/public/static/essential/assets/images/nothing-there.png" alt="Umm...I think you have no items for checkout!">
+            <p style="margin-top: -2.4rem;">Umm...I think you should select some items from <a class="lined-link" href="/products">Home</a> page first, then proceed for checkout.</p>
+        <% } %>
+    </main>
+</body>
+</html>

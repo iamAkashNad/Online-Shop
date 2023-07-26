@@ -1,0 +1,50 @@
+<%- include("includes/head", { title: "Edit profile!" }) %>
+<link rel="stylesheet" href="/public/static/essential/assets/styles/forms.css">
+<link rel="stylesheet" href="/public/static/essential/assets/styles/responsive/forms.responsive.css">
+<script src="/public/static/essential/assets/js/image-preview.js" defer></script>
+</head>
+<body>
+    <%- include("includes/header", { page: "edit profile" }) %>
+    <main>
+        <h1>Edit your profile!</h1>
+        <form class="form" action="/user/edit?_csrf=<%= locals.csrfToken %>" method="POST" enctype="multipart/form-data">
+            <% if(inputData.hasError) { %>
+                <div class="form-control">
+                    <p class="error"><%= inputData.message %></p>
+                </div>
+            <% } %>
+            <div class="form-control">
+                <div id="image-preview-div">
+                    <img id="image-preview" src="" alt="user image">
+                </div>
+                <label for="image" id="image-picker">Change Image
+                    <input type="file" id="image" name="user-image" />
+                </label>
+            </div>
+            <div class="form-control">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" value="<%= inputData.city %>" required />
+            </div>
+            <div class="form-control">
+                <label for="country">Country</label>
+                <input type="text" id="country" name="country" value="<%= inputData.country %>" required />
+            </div>
+            <div class="form-control">
+                <label for="street-number">Street Number</label>
+                <input type="text" id="street-number" name="street-number" value="<%= inputData["street-number"] %>" required />
+            </div>
+            <div class="form-control">
+                <label for="milestone">Milestone</label>
+                <input type="text" id="milestone" name="milestone" value="<%= inputData.milestone %>" required />
+            </div>
+            <div class="form-control">
+                <label for="postal-code">Postal Code</label>
+                <input type="number" id="postal-code" name="postal-code" value="<%= inputData["postal-code"] %>" required />
+            </div>
+            <div class="data-management">
+                <button class="btn">Edit!</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

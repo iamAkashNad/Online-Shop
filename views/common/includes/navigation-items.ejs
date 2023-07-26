@@ -1,0 +1,15 @@
+<li><a class="<%= page === "home" ? "active" : "" %>" href="/">Home</a></li>
+<% if(!locals.userStatus || (locals.userStatus && !locals.userStatus.isAdmin)) { %>
+    <li><a class="<%= page === "cart" ? "active" : "" %>" href="/cart">Cart <span class="cart-qty badge"><%= locals.cart.totalQuentity %></span></a></li>
+<% } %>
+<% if(!locals.userStatus) { %> 
+    <li><a class="<%= page === "signup" ? "active" : "" %>" href="/signup">Signup</a></li>
+    <li><a class="<%= page === "login" ? "active" : "" %>" href="/login">Login</a></li>
+<% } else if(locals.userStatus) { %>
+    <% if(locals.userStatus.isAdmin) { %> 
+        <li><a class="<%= page === "deshboard" ? "active" : "" %>" href="/admin/products/create">Deshboard</a></li>
+        <li><a class="<%= page === "manage orders" ? "active" : "" %>" href="/admin/orders/manage">Manage Orders</a></li>
+    <% } else { %>
+        <li><a class="<%= page === "orders" ? "active" : "" %>" href="/orders">Orders</a></li>
+    <% } %>
+<% } %>

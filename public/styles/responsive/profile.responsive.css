@@ -1,0 +1,12 @@
+@media (max-width: 600px) {
+    #user-section {
+        flex-direction: column;
+    }
+    #user-management {
+        flex-direction: row;
+        margin: 1rem auto;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}

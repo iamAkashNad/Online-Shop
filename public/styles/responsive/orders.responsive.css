@@ -1,0 +1,53 @@
+@media(min-width: 1200px) {
+    #feedback-section {
+        width: 50%;
+        left: 25%;
+    }
+}
+
+@media(min-width: 2000px) {
+    #feedback-section {
+        width: 40%;
+        left: 30%;
+    }
+}
+
+@media(min-width: 3000px) {
+    #feedback-section {
+        width: 30%;
+        left: 35%;
+    }
+}
+
+@media (max-width: 780px) {
+    #orders-list {
+        width: 90%;
+    }
+    #feedback-section {
+        width: 70%;
+        left: 15%;
+    }
+}
+
+@media (max-width: 580px) {
+    #orders-list {
+        width: 95%;
+    }
+    #feedback-section {
+        width: 90%;
+        left: 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    #orders-list {
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    #feedback-section {
+        width: 95%;
+        left: 2.5%;
+    }
+}

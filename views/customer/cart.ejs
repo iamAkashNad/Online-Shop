@@ -1,0 +1,39 @@
+<%- include("../common/includes/head", { title: "Your Cart!" }) %>
+<link rel="stylesheet" href="/public/static/essential/assets/styles/cart.css">
+<link rel="stylesheet" href="/public/static/essential/assets/styles/responsive/cart.responsive.css">
+
+<script src="/public/static/essential/assets/js/ajax/message.js" defer></script>
+<script src="/public/static/essential/assets/js/ajax/update-cart.js" defer></script>
+</head>
+<body>
+    <%- include("../common/includes/header", { page: "cart" }) %>
+    <main>
+        <%- include("../common/includes/message") %>
+        <h1>Add items to the <span class="highlight">Cart</span>!</h1>
+        <% if(locals.cart.items.length === 0) { %>
+            <p>No items in the cart!</p>
+        <% } else { %>
+            <div id="workspace"></div>
+            <section id="cart-section">
+                <ol id="cart-items">
+                    <% for(const cartItem of locals.cart.items) { %>
+                        <li class="cart-item">
+                            <%- include("includes/cart-item", { cartItem: cartItem }) %>
+                        </li>
+                    <% } %>
+                </ol>
+                <div id="cart-meta">
+                    <h2 id="cart-total"><%= INR.format(locals.cart.totalPrice) %></h2>
+                    <% if(locals.userStatus) { %>
+                        <form action="/checkout" method="GET">
+                            <button id="buy-all-btn" class="btn">Buy All</button>
+                        </form>
+                    <% } else { %>
+                        <a style="color: rgb(0, 0, 137);" href="/login">Login for purchase!</a>
+                    <% } %>
+                </div>
+            </section>
+        <% } %>
+    </main>
+</body>
+</html>

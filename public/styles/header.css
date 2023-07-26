@@ -1,0 +1,47 @@
+#logo {
+    width: 8rem;
+}
+
+#shop-header {
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-color-400);
+}
+
+#shop-title {
+    margin-top: 1.6rem;
+    margin-bottom: 0.6rem;
+}
+
+#shop-header a {
+    color: var(--color-font-light);
+}
+
+#shop-navbar ul {
+    display: flex;
+    gap: 1rem;
+}
+
+#shop-navbar ul li {
+    margin-top: 0.4rem;
+}
+
+#shop-navbar ul li a.active {
+    color: white;
+}
+
+#shop-navbar ul li a:hover,
+#shop-navbar ul li a:active {
+    color: white;
+}
+
+#user-image-item {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    border: 1px solid var(--color-blue-500);
+    border-radius: 50%;
+}
+

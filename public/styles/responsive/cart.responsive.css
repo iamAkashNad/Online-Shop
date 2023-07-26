@@ -1,0 +1,38 @@
+@media (max-width: 836px) {
+    #cart-section,
+    #checkout-section {
+        width: 75%;
+    }
+}
+
+@media (max-width: 750px) {
+    #cart-section,
+    #checkout-section {
+        width: 90%;
+    }
+}
+
+@media (max-width: 590px) {
+    #cart-section,
+    #checkout-section {
+        width: 60%;
+    }
+    .update-cart {
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+    .cart-item article,
+    .checkout-item article {
+        flex-direction: column;
+    }
+    .product-meta {
+        text-align: center;
+    }
+}
+
+@media (max-width: 390px) {
+    #cart-section,
+    #checkout-section {
+        width: 90%;
+    }
+}

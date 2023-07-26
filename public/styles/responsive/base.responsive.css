@@ -1,0 +1,32 @@
+@media (max-width: 900px) {
+    main {
+        width: 85%;
+    }
+}
+
+@media (max-width: 650px) {
+    #not-found,
+    #server-error,
+    #forbidden-img,
+    #not-auth {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    main {
+        width: 90%;
+    }
+}
+
+@media (max-width: 430px) {
+    h1 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 400px) {
+    main {
+        width: 95%;
+    }
+}

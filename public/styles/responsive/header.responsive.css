@@ -1,0 +1,43 @@
+@media (max-width: 900px) {
+    #shop-header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+    #shop-navbar {
+        display: none;
+    }
+    #hamburger-icon {
+        display: flex;
+    }
+    #side-drawer {
+        text-align: center;
+    }
+    #side-drawer ul {
+        margin: 2rem 0;
+    }
+    #side-drawer ul li {
+        margin: 1.5rem 0;
+    }
+    #side-drawer ul li a {
+        font-size: 1.2rem;
+        color: var(--color-font-light);
+    }
+    #side-drawer ul li a.active {
+        color: white;
+    }
+    #side-drawer ul li a:hover,
+    #side-drawer ul li a:active {
+        color: white;
+    }
+    main {
+        margin-top: 6rem;
+    }
+}
+
+@media (max-width: 430px) {
+    #side-drawer {
+        top: 3.8rem;
+    }
+}

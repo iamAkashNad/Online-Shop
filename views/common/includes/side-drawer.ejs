@@ -1,0 +1,10 @@
+<aside id="side-drawer">
+    <ul>
+        <%- include("navigation-items") %>
+        <% if(locals.userStatus) { %>
+            <li>
+                <a class="<%= page === "profile" ? "active" : "" %>" href="/user/profile">Your Profile</a>
+            </li>
+        <% } %>
+    </ul>
+</aside>

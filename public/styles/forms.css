@@ -1,0 +1,82 @@
+.form {
+    width: 60%;
+    text-align: center;
+    margin: 1rem auto;
+    padding: var(--padding-3) var(--padding-5);
+    background-color: var(--bg-color-200);
+    border-radius: 3px;
+    box-shadow: var(--box-shadow-medium);
+}
+
+.form-control {
+    margin: 1rem auto;
+    width: 90%;
+}
+
+.form-control input,
+.form-control label,
+.form-control textarea {
+    display: block;
+}
+
+.form-control input,
+.form-control textarea {
+    font-size: 1rem;
+    font-family: inherit;
+    width: 100%;
+    margin: 0.3rem auto 0 auto;
+    padding: var(--padding-1) 0.3rem;
+    background-color: var(--bg-color-100);
+    border: none;
+    border-radius: 3px;
+}
+
+.form-control textarea {
+    resize: none;
+}
+
+#image {
+    display: none;
+}
+
+#image-picker {
+    cursor: pointer;
+    width: 80%;
+    margin: auto;
+    padding: var(--padding-1);
+    border: 1px solid var(--color-blue-400);
+    border-radius: 3px;
+}
+
+#file-picker-p {
+    margin: 0.1rem 0;
+}
+
+#image-preview-div {
+    margin-bottom: 0.2rem;
+}
+
+#image-preview {
+    margin: auto;
+    display: none;
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    border: 3px solid var(--color-blue-50);
+    border-radius: 50%;
+}
+
+#forgot-password {
+    margin-top: 0.3rem;
+    text-align: right;
+}
+
+.error {
+    width: 100%;
+    margin: auto;
+    color: var(--error-color);
+    background-color: var(--error-bg);
+    padding: var(--padding-1) var(--padding-2);
+    border: 1px solid var(--error-border-color);
+    border-radius: 3px;
+}

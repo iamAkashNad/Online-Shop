@@ -1,0 +1,40 @@
+<article>
+    <div class="order-meta">
+        <h2 class="order-price"><%= INR.format(order.totalPrice) %></h2>
+        <section class="user-info-section"></section>
+        <p style="margin: 0; display: inline; cursor: pointer;" class="lined-link get-address" data-orderid="<%= order._id %>">Show Address</p>
+        <p style="margin: 0; display: none; cursor: pointer;" class="lined-link hide-address">Hide Address</p>
+        <p class="order-date"><%= order.hrDate %></p>
+        <ol class="order-items">
+            <% for(const item of order.items) { %>
+                <li class="product-item">
+                    <p><span><%= INR.format(item.totPrice) %></span> - 
+                        <a class="lined-link" href="/products/<%= item.product._id %>"><%= item.product.title %></a>
+                        <span>(<%= INR.format(item.product.price) %> x <%= item.totalQty %>)</span>
+                    </p>
+                </li>
+            <% } %>
+        </ol>
+    </div>
+    <div class="order-manager">
+        <% if(order.status === "Pending") { %>
+            <form class="order-status-form">
+                <select name="status" class="order-status">
+                    <option value="Pending">Pending</option>
+                    <option value="Shipped">Shipped</option>
+                    <option value="Cancel">Cancel</option>
+                </select>
+                <input type="hidden" name="orderId" value="<%= order._id %>">
+                <input type="hidden" name="csrf" value="<%= csrfToken %>">
+                <button class="btn">Update</button>
+            </form>
+            <span style="display: none;" class="order-status-span"></span>
+            <button class="btn util-btn clear-order-btn" data-url="/admin/orders/clear" data-orderid="<%= order._id %>" data-csrftoken="<%= locals.csrfToken %>">Clear</button>
+        <% } else { %>
+            <span class="order-status"><%= order.status %></span>
+            <% if(order.status === "Cancel" || order.status === "Delivered") { %>
+                <button class="btn clear-order-btn" data-url="/admin/orders/clear" data-orderid="<%= order._id %>" data-csrftoken="<%= locals.csrfToken %>">Clear</button>
+            <% } %>
+        <% } %>
+    </div>
+</article>

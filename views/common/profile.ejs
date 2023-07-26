@@ -1,0 +1,46 @@
+<%- include("includes/head", { title: "Hello " + user.name.substring(0, user.name.indexOf(" ")) + "!" }) %>
+<link rel="stylesheet" href="/public/static/essential/assets/styles/user.css">
+
+<link rel="stylesheet" href="/public/static/essential/assets/styles/responsive/profile.responsive.css">
+</head>
+<body>
+    <%- include("includes/header", { page: "profile" }) %>
+    <main>
+        <h1>Hello <span class="highlight"><%= user.name.substring(0, user.name.indexOf(" ")) %></span>!</h1>
+        <section id="user-section">
+            <div>
+                <img id="dp" src="<%= locals.userImagePath %>" alt="user pic!">
+                <div id="user-management">
+                    <div>
+                        <a href="/user/edit" class="btn btn-alt">Edit profile</a>
+                    </div>
+                    <form action="/logout?_csrf=<%= locals.csrfToken %>" method="POST">
+                        <button class="btn">Logout</button>
+                    </form>
+                </div>
+            </div>
+            <div id="user-meta">
+                <div id="user-data">
+                    <h3><%= user.name %></h3>
+                    <hr>
+                    <p><%= user.email %></p>
+                    <hr>
+                </div>
+                <h2>Address</h2>
+                <div id="user-address">
+                    <p><%= user.address.streetNumber %></p>
+                    <hr>
+                    <p><%= user.address.milestone %></p>
+                    <hr>
+                    <p><%= user.address.city %></p>
+                    <hr>
+                    <p><%= user.address.country %></p>
+                    <hr>
+                    <p><%= user.address.postalCode %></p>
+                    <hr>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

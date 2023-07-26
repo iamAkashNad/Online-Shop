@@ -1,0 +1,113 @@
+#one-time-use {
+    display: none;
+}
+
+#orders-list {
+    width: 60%;
+    margin: auto;
+}
+
+.order-item {
+    text-align: left;
+    padding: var(--padding-3);
+    margin: 1rem 0;
+    background-color: var(--color-blue-200-transparent);
+    border-radius: 4px;
+    box-shadow: var(--box-shadow-medium);
+}
+
+.order-item article {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.order-manager {
+    text-align: right;
+}
+
+.order-status,
+.order-status-span,
+#feeling {
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--color-blue-400);
+    padding: var(--padding-1) var(--padding-3);
+    background-color: transparent;
+    border: 1.5px solid var(--color-blue-400);
+    border-radius: 4px;
+}
+
+.order-price {
+    margin: 0.4rem 0;
+    color: var(--color-blue-400);
+}
+
+.order-date {
+    margin: 0.4rem 0;
+    color: rgb(46, 61, 83);
+}
+
+.order-items {
+    margin-left: 1rem;
+    list-style: disc;
+}
+
+.product-item p {
+    margin: 0.2rem 0;
+    font-size: 0.9rem;
+}
+
+.user-info-section {
+    display: none;
+    padding: 0.2rem 1rem;
+    background-color: var(--bg-color-100);
+    border: 1px solid var(--color-blue-400);
+    border-radius: 4px;
+}
+
+.user-info-section h2 {
+    margin: 0 0.5rem;
+    color: var(--color-blue-400);
+}
+
+.user-info-section p {
+    margin: 0.3rem 0;
+    color: var(--color-blue-400);
+}
+
+.user-info-section hr {
+    border: 1px solid var(--color-blue-400);
+}
+
+#feedback-section {
+    display: none;
+    position: fixed;
+    top: 4rem;
+    width: 60%;
+    left: 20%;
+    padding: 0.3rem 0.3rem 1rem 0.3rem;
+}
+
+#feedback-section h2 {
+    margin-top: 0;
+}
+
+#feedback-close {
+    text-align: right;
+    color: var(--color-blue-400);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#feedback-close span {
+    padding: 0.05rem 0.2rem;
+    border: 1px solid transparent;
+}
+
+#feedback-close span:hover,
+#feedback-close span:active {
+    border-color: var(--color-blue-400);
+    border-radius: 3px;
+}

@@ -1,0 +1,19 @@
+<header id="shop-header">
+    <h1 id="shop-title">
+        <a href="/">
+            <img id="logo" src="https://i.imgur.com/1EXk9ij.png" alt="wCart">
+        </a>
+    </h1>
+    <nav id="shop-navbar">
+        <ul>
+            <%- include("navigation-items") %>
+            <% if(locals.userStatus) { %> 
+                <a href="/user/profile">
+                    <img id="user-image-item" src="<%= locals.userImagePath %>" alt="User Image">
+                </a>
+            <% } %>
+        </ul>
+    </nav>
+    <%- include("hamburger") %> 
+</header>
+<%- include("side-drawer") %>

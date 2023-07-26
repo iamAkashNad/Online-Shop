@@ -1,0 +1,31 @@
+<%- include("../common/includes/head", { title: "All Orders!" }) %>
+<link rel="stylesheet" href="/public/static/essential/assets/styles/orders.css">
+<link rel="stylesheet" href="/public/static/essential/assets/styles/responsive/orders.responsive.css">
+
+<% if(orders.length > 0) { %>
+    <script src="/public/static/essential/assets/js/ajax/getUserInfo.js" defer></script>
+    <script src="/public/static/essential/assets/js/ajax/updateOrderStatus.js" defer></script>
+    <script src="/public/static/essential/assets/js/ajax/clearOrder.js" defer></script>
+    <script src="/public/static/essential/assets/js/ajax/message.js" defer></script>
+<% } %>
+</head>
+<body>
+    <%- include("../common/includes/header", { page: "manage orders" }) %>
+    <main>
+        <h1>Manage all <span class="highlight">Orders</span>!</h1>
+        <%- include("../common/includes/message") %>
+        <% if(!orders || orders.length === 0) { %>
+            <p>No orders has been there!</p>
+        <% } else { %>
+            <p id="one-time-use"></p>
+            <ol id="orders-list">
+                <% for(const order of orders) { %>
+                    <li class="order-item">
+                        <%- include("includes/order-item", { order: order }) %>
+                    </li>
+                <% } %>
+            </ol>
+        <% } %>
+    </main>
+</body>
+</html>

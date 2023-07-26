@@ -1,0 +1,35 @@
+<%- include("../common/includes/head", { title: "Your Orders!" }) %>
+<link rel="stylesheet" href="/public/static/essential/assets/styles/orders.css">
+<link rel="stylesheet" href="/public/static/essential/assets/styles/responsive/orders.responsive.css">
+
+<% if(orders.length > 0) { %>
+    <link rel="stylesheet" href="/public/static/essential/assets/styles/forms.css">
+    <link rel="stylesheet" href="/public/static/essential/assets/styles/responsive/forms.responsive.css">
+
+    <script src="/public/static/essential/assets/js/ajax/feedbacks.js" defer></script>
+    <script src="/public/static/essential/assets/js/ajax/cancelOrder.js" defer></script>
+    <script src="/public/static/essential/assets/js/ajax/clearOrder.js" defer></script>
+    <script src="/public/static/essential/assets/js/ajax/message.js" defer></script>
+<% } %>
+</head>
+<body>
+    <%- include("../common/includes/header", { page: "orders" }) %>
+    <main>
+        <h1>Manage your all <span class="highlight">Orders</span>!</h1>
+        <%- include("../common/includes/message") %>
+        <% if(!orders || orders.length === 0) { %>
+            <p>No orders has been there!</p>
+        <% } else { %>
+            <p id="one-time-use"></p>
+            <%- include("includes/feedback") %>
+            <ol id="orders-list">
+                <% for(const order of orders) { %>
+                    <li class="order-item">
+                        <%- include("includes/order-item", { order: order }) %>
+                    </li>
+                <% } %>
+            </ol>
+        <% } %>
+    </main>
+</body>
+</html>

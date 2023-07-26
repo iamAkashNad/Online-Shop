@@ -1,0 +1,29 @@
+<article>
+    <div class="order-meta">
+        <h2 class="order-price"><%= INR.format(order.totalPrice) %></h2>
+        <a href="/order/<%= order._id %>" class="lined-link">invoice</a>
+        <p class="order-date"><%= order.hrDate %></p>
+        <ol class="order-items">
+            <% for(const item of order.items) { %>
+                <li class="product-item">
+                    <p><span><%= INR.format(item.totPrice) %></span> - 
+                        <a class="lined-link" href="/products/<%= item.product._id %>"><%= item.product.title %></a>
+                        <span>(<%= INR.format(item.product.price) %> x <%= item.totalQty %>)</span>
+                    </p>
+                </li>
+            <% } %>
+        </ol>
+    </div>
+    <div class="order-manager">
+        <span class="btn-alt-badge order-status"><%= order.status %></span>
+        <% if(order.status === "Pending") { %>
+            <button class="btn cancel-order-btn" data-orderid="<%= order._id %>" data-csrftoken="<%= locals.csrfToken %>">Cancel</button>
+            <button class="btn util-btn clear-order-btn" data-url="/orders/clear" data-orderid="<%= order._id %>" data-csrftoken="<%= locals.csrfToken %>">Clear</button>
+        <% } else if(order.status === "Shipped") { %>
+            <button class="btn get-give-feedback-btn" data-orderid="<%= order._id %>">Give Feedback</button>
+            <button class="btn util-btn clear-order-btn" data-url="/orders/clear" data-orderid="<%= order._id %>" data-csrftoken="<%= locals.csrfToken %>">Clear</button>
+        <% } else if(order.status === "Cancel" || order.status === "Delivered") { %>
+            <button class="btn clear-order-btn" data-url="/orders/clear" data-orderid="<%= order._id %>" data-csrftoken="<%= locals.csrfToken %>">Clear</button>
+        <% } %>
+    </div>
+</article>

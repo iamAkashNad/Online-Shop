@@ -1,0 +1,83 @@
+button {
+    cursor: pointer;
+}
+
+.btn {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: var(--padding-1) var(--padding-3);
+    color: white;
+    background-color: var(--color-blue-400);
+    border: 1px solid var(--color-blue-400);
+    border-radius: 4px;
+}
+
+.btn:hover,
+.btn:active {
+    background-color: var(--color-blue-300);
+}
+
+.btn-alt {
+    background-color: transparent;
+    color: var(--color-blue-400);
+}
+
+.btn-alt:hover,
+.btn-alt:active {
+    color: white;
+    background-color: var(--color-blue-400);
+}
+
+.link {
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--color-font-light);
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+.btn-light {
+    background-color: var(--color-font-light);
+    color: var(--color-font-dark);
+    border-color: var(--color-font-light);
+    border-radius: 2px;
+}
+
+.btn-light:hover,
+.btn-light:active {
+    background-color: var(--color-blue-50);
+    border-color: var(--color-blue-50);
+    color: var(--color-font-light);
+}
+
+.btn-alt-light {
+    background-color: transparent;
+    color: var(--color-font-light);
+    border-color: var(--color-font-light);
+}
+
+.btn-alt-light:hover,
+.btn-alt-light:active {
+    background-color: var(--color-font-light);
+    border-color: var(--color-font-light);
+    color: var(--color-font-dark);
+}
+
+.delete-btn {
+    display: inline;
+}
+
+.btn-alt-badge {
+    background-color: transparent;
+    color: var(--color-blue-400);
+    font-family: inherit;
+    font-size: 1rem;
+    padding: var(--padding-1) var(--padding-3);
+    border: 1px solid var(--color-blue-400);
+    border-radius: 4px;
+}
+
+.util-btn {
+    display: none;
+}

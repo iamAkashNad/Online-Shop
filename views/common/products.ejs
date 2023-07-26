@@ -1,0 +1,46 @@
+<%- include("includes/head", { title: "All Products!" }) %>
+<link rel="stylesheet" href="/public/static/essential/assets/styles/products.css" />
+
+<% if(locals.userStatus && locals.userStatus.isAdmin) { %> 
+    <script src="/public/static/essential/assets/js/ajax/message.js" defer></script>
+    <script src="/public/static/essential/assets/js/ajax/delete-product.js" defer></script>
+<% } %>
+</head>
+<body>
+    <%- include("includes/header", { page: "home" }) %>
+    <main>
+        <%- include("includes/message") %>
+        <h1>Products</h1>
+        <% if(!products || products.length === 0) { %>
+            <p>No product has been added yet to the shop<%= locals.userStatus && locals.userStatus.isAdmin ? " - Maybe you can add some" : "" %>!</p>
+        <% } else { %> 
+            <ol id="products-list">
+                <% for(const product of products) { %> 
+                    <li class="product-item">
+                        <%- include("includes/product", { product: product }) %>
+                    </li>
+                <% } %>
+            </ol>
+            <section id="page-controller">
+                <% if(prevPage !== 1 && currPage !== 1) { %>
+                    <a href="?page=1" class="page">1</a>
+                    <% if(prevPage > 2) { %>
+                        <span>...</span>
+                    <% } %>
+                <% } if(prevPage > 0) { %>
+                    <a href="?page=<%= prevPage %>" class="page"><%= prevPage %></a>
+                <% } %>
+                <p class="page active-page"><%= currPage %></p>
+                <% if(nextPageExists) { %>
+                    <a href="?page=<%= nextPage %>" class="page"><%= nextPage %></a>
+                <% } if(lastPage !== currPage && lastPage !== nextPage) { %>
+                    <% if(lastPage - nextPage > 1) { %>
+                        <span>...</span>
+                    <% } %>
+                    <a href="?page=<%= lastPage %>" class="page"><%= lastPage %></a>
+                <% } %>
+            </section>
+        <% } %>
+    </main>
+</body>
+</html>

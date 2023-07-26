@@ -1,0 +1,29 @@
+<article>
+    <div class="product-meta">
+        <h3 class="title"><%= cartItem.product.title %></h2>
+        <% if(cartItem.status) { %>
+            <p class="error-msg"><%= cartItem.status %></p>
+        <% } else { %> 
+            <p>
+                <span class="total-price"><%= INR.format(cartItem.totPrice) %></span>
+                <span class="price">(<%= INR.format(cartItem.product.price) %>)</span>
+            </p>
+        <% } %>
+    </div>
+    <div class="item-manager">
+        <section class="update-cart">
+            <div>
+                <input class="item-quetity" type="number" value="<%= cartItem.totalQty %>">
+            </div>
+            <div class="item-console">
+                <button data-csrftoken="<%= locals.csrfToken %>" data-productid="<%= cartItem.product._id %>" class="btn update-cart-btn">Update</button>
+                <% if(locals.userStatus) { %>
+                    <form style="display: inline;" action="/checkout" method="GET">
+                        <input type="hidden" name="cartItem" value="<%= cartItem.product._id %>">
+                        <button class="btn btn-alt item-buy-btn">Buy</button>
+                    </form>
+                <% } %>
+            </div>
+        </section>
+    </div>
+</article>

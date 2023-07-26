@@ -1,0 +1,9 @@
+<article>
+    <div class="product-meta">
+        <h3 class="title"><%= item.product.title %></h2>
+        <p><span class="total-price"><%= INR.format(item.totPrice) %></span><span class="price">(<%= INR.format(item.product.price) %>)</span></p>
+    </div>
+    <div class="item-manager">
+        <input style="pointer-events: none;" class="item-quetity" type="number" value="<%= item.totalQty %>">
+    </div>
+</article>

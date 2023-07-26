@@ -1,0 +1,29 @@
+<%- include("includes/head", { title: title }) %>
+<link rel="stylesheet" href="/public/static/essential/assets/styles/forms.css">
+<link rel="stylesheet" href="/public/static/essential/assets/styles/responsive/forms.responsive.css">
+
+<script src="/public/static/essential/assets/js/ajax/message.js" defer></script>
+<script src="/public/static/essential/assets/js/ajax/sendVerifyCode.js" defer></script>
+</head>
+<body>
+    <%- include("includes/header", { page: page }) %>
+    <main>
+        <%- include("includes/message") %>
+        <h2>The code is send to <%= email %></h2>
+        <form class="form" action=<%= actionURL %> method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <div class="form-control">
+                <label for="code">Verification Code</label>
+                <input type="text" id="code" name="code" required />
+            </div>
+            <button class="btn">Verify</button>
+            <p>Haven't recieve code? 
+                <button id="send-code-btn" type="button" style="color: rgb(5, 5, 132);" class="link" data-csrftoken="<%= csrfToken %>">
+                    Send Again!
+                </button>
+            </p>
+            <p id="code-sending" style="display: none;">Code sending...</p>
+        </form>
+    </main>
+</body>
+</html>

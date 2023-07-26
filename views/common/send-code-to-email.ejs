@@ -1,0 +1,27 @@
+<%- include("includes/head", { title: "Forgot Password!" }) %>
+
+<link rel="stylesheet" href="/public/static/essential/assets/styles/forms.css">
+<link rel="stylesheet" href="/public/static/essential/assets/styles/responsive/forms.responsive.css">
+</head>
+<body>
+    <%- include("includes/header", { page: "login" }) %>
+    <main>
+        <section>
+            <h1>Enter your Email for getting Code</h1>
+            <form action="/login/code/send" class="form" method="POST">
+                <% if(inputData.hasError) { %>
+                    <div class="form-control">
+                        <p class="error"><%= inputData.message %></p>
+                    </div>
+                <% } %>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div class="form-control">
+                    <label for="user-email">Your Email</label>
+                    <input type="email" id="user-email" name="email" value="<%= inputData.email %>" required />
+                </div>
+                <button class="btn">Send Code</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

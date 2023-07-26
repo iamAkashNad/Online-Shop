@@ -1,0 +1,33 @@
+<%- include("includes/head", { title: product.title }) %>
+<link rel="stylesheet" href="/public/static/essential/assets/styles/product-details.css" />
+<link rel="stylesheet" href="/public/static/essential/assets/styles/responsive/product-details.responsive.css" />
+
+<% if(!locals.userStatus || !locals.userStatus.isAdmin) { %>
+    <script src="/public/static/essential/assets/js/ajax/addToCart.js" defer></script>
+<% } %>
+<script src="/public/static/essential/assets/js/ajax/message.js" defer></script>
+</head>
+<body>
+    <%- include("includes/header", { page: "home" }) %>
+    <main>
+        <%- include("includes/message") %>
+        <section id="product-meta">
+            <img id="product-image" src="<%= product.imagePath %>" alt="<%= product.title %>">
+            <div id="product-data">
+                <div id="product-meta-data">
+                    <h2 id="product-title"><%= product.title %></h2>
+                    <p id="product-summary"><%= product.summary %></p>
+                    <p id="product-price"><%= INR.format(product.price) %></p>
+                </div>
+                <% if(!locals.userStatus || !locals.userStatus.isAdmin) { %> 
+                    <button id="add-to-cart-btn" data-productid="<%= product._id %>" data-csrftoken="<%= locals.csrfToken %>" class="btn btn-alt-light">Add to Cart!</button>
+                <% } %>
+            </div>
+        </section>
+        <section id="description">
+            <h2 id="desc-head">Description</h2>
+            <section id="body"><%= product.description %></section>
+        </section>
+    </main>
+</body>
+</html>

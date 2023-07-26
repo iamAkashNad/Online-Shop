@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Gantari", sans-serif;
+
+    --color-blue-500: rgb(0, 0, 75);
+    --color-blue-400: rgb(0, 0, 119);
+    --color-blue-300: rgb(0, 0, 137);
+    --color-blue-200: rgb(19, 19, 168);
+    --color-blue-100: rgb(3, 3, 197);
+    --color-blue-50: rgb(16, 16, 221);
+
+    --color-blue-200-transparent: rgb(19, 19, 168, 0.4);
+
+    --color-font-light: rgb(195, 195, 247);
+    --color-font-dark: rgb(14, 14, 59);
+
+    --bg-color-400: rgb(0, 0, 163);
+    --bg-color-300: rgb(101, 101, 244);
+    --bg-color-200: rgb(166, 166, 247);
+    --bg-color-100: rgb(225, 225, 255);
+
+    --error-bg: rgba(245, 172, 172, 0.451);
+    --error-color: rgb(192, 30, 30);
+    --error-border-color: rgba(245, 172, 172, 0.844);
+
+    --padding-1: 0.25rem;
+    --padding-2: 0.5rem;
+    --padding-3: 1rem;
+    --padding-4: 1.5rem;
+    --padding-5: 2rem;
+    --padding-6: 2.5rem;
+    --padding-7: 3rem;
+
+    --box-shadow-medium: 0px 2px 8px rgba(0, 0, 0, 0.2);
+    --box-shadow-small: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+a {
+    color: var(--color-blue-400);
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    width: 80%;
+    max-width: 60rem;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+ol,
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.highlight {
+    color: var(--color-blue-200);
+}
+
+#page-head {
+    margin-bottom: 0.3rem;
+}
+
+#header-para {
+    margin-top: 0.3rem;
+}
+
+.error-msg {
+    color: var(--error-color);
+}
+
+.badge {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 50%;
+    background-color: var(--color-blue-500);
+}
+
+.image-section {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#not-found,
+#server-error,
+#forbidden-img,
+#not-auth,
+.utility-img {
+    width: 70%;
+    max-width: 30rem;
+}
+
+.lined-link:hover,
+.lined-link:active {
+    color: var(--bg-color-300);
+    text-decoration: underline;
+}
