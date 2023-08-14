@@ -80,7 +80,7 @@ const getEmailMainBody = (purpose, data) => {
       return `
       <section>
           <h3>We unable to process your order</h3>
-          <p>We are sorry to say that because of some internal problem we are unable to proceed with your order. But don't take stress about your payed money. We are working on refund your payment ${data.INR.format(data.totalPrice)}</p>
+          <p>We are sorry to say that because of some internal problem we are unable to proceed with your order. But don't take stress about your paid money. We are working on refund your payment ${data.INR.format(data.totalPrice)}</p>
           <p><em>Happy Shopping!</em></p>
       </section>
       `;

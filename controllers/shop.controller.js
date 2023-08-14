@@ -77,7 +77,7 @@ const addToCart = async (req, res, next) => {
   } catch(error) {
     return next(error);
   }
-  res.status(203).json({ totalQuentity: cart.totalQuentity });
+  res.status(200).json({ totalQuentity: cart.totalQuentity });
 };
 
 const getCart = (req, res, next) => {
@@ -146,12 +146,12 @@ const chargeForTheOrder = async (req, res, next) => {
   res.redirect(303, session.url);
 };
 
-const getSuccessPurchasePage = async (req, res, next) => {
+const confirmPurchase = async (req, res, next) => {
   const ovc = req.query.ovc;
   const { order_ver_code } = req.session;
-  if(!ovc || !order_ver_code) return res.status(404).render("common/404");
-
   req.session.order_ver_code = null;
+  
+  if(!ovc || !order_ver_code) return res.status(404).render("common/404");
   const isMatched = await bcrypt.compare(ovc, order_ver_code);
   if(!isMatched) return res.status(404).render("common/404");
 
@@ -324,7 +324,7 @@ module.exports = {
   updateCart,
   getCheckouts,
   chargeForTheOrder,
-  getSuccessPurchasePage,
+  confirmPurchase,
   getCancelPurchasePage,
   getOrders,
   getInvoiceForOrder,

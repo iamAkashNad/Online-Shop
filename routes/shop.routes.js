@@ -22,7 +22,7 @@ router.get("/checkout", shopSecurity, modifyCart, shopController.getCheckouts);
 
 router.post("/checkout", shopSecurity, shopController.chargeForTheOrder);
 
-router.get("/order/success", shopController.getSuccessPurchasePage);
+router.get("/order/success", shopController.confirmPurchase);
 
 router.get("/order/cancel", shopController.getCancelPurchasePage);
 
