@@ -4,7 +4,6 @@ const session = require("express-session");
 
 const helmet = require("helmet");
 const compression = require("compression");
-const morgan = require("morgan");
 require("dotenv").config();
 
 const db = require("./data/connections/database");
@@ -24,7 +23,6 @@ const clearVerificationData = require("./middlewares/clearVerificationData.middl
 
 const helmetConfig = require("./config/helmet.config");
 const sessionConfig = require("./config/session.config");
-const { morganFormatConfig, morganSuccessConfig, morganErrorConfig } = require("./config/morgan.config");
 
 const app = express();
 
@@ -32,9 +30,6 @@ app.set("view engine", "ejs");
 
 app.use(helmet(helmetConfig()));
 app.use(compression());
-
-app.use(morgan(morganFormatConfig, morganSuccessConfig()));
-app.use(morgan(morganFormatConfig, morganErrorConfig()));
 
 app.use(session(sessionConfig()));
 
