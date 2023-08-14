@@ -23,10 +23,10 @@ const getProducts = async (req, res, next) => {
   let products, numberOfProducts;
   try {
     numberOfProducts = await Product.countProducts();
-    if(Math.ceil(numberOfProducts / ITEMS_PER_PAGE) < pageNo) {
+    if(numberOfProducts > 0 && Math.ceil(numberOfProducts / ITEMS_PER_PAGE) < pageNo) {
       req.session.page = Math.ceil(numberOfProducts / ITEMS_PER_PAGE);
       return res.redirect("/");
-    }
+    } else if(numberOfProducts == 0) pageNo = 1;
     products = await Product.fetchProductsPerPage(pageNo, { title: 1, image: 1, price: 1 }, ITEMS_PER_PAGE);
   } catch (error) {
     return next(error);
