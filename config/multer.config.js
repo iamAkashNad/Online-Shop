@@ -6,9 +6,7 @@ const multerConfig = (folderPath) => {
         filename: (req, file, cb) => {
             cb(null, getId() + "-" + file.originalname);
         },
-        destination: (req, file, cb) => {
-            cb(null, folderPath);
-        }
+        destination: folderPath
     });
     const fileFilter = (req, file, cb) => {
         if(file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg")
