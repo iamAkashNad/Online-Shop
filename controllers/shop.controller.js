@@ -238,7 +238,6 @@ const getInvoiceForOrder = async (req, res, next) => {
     pdf.pipe(res);
     createInvoiceForOrder(pdf, order, res.locals.INR);
   } catch(error) {
-    console.log(error);
     next(error);
   }
 };
@@ -289,7 +288,6 @@ const clearOrder = async (req, res) => {
 
 const submitFeedbackForDelivary = async (req, res) => {
   const { orderId, feeling, feedback } = req.body;
-  // console.log(feeling, feedback);
   let order;
   try {
     order = await Order.fetchById(orderId);

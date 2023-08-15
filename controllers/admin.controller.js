@@ -43,7 +43,9 @@ const createProduct = async (req, res, next) => {
                 res.redirect("/admin/products/create");
             });
         })
-        .catch(error => next(error));
+        .catch(error => {
+            next(error)
+        });
     }
 
     const productData = {};

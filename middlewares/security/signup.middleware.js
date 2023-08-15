@@ -1,5 +1,3 @@
-const signupValidation = require("../../validations/user/signup.validation");
-const { storeInputData } = require("../../validations/inputData.validation");
 const User = require("../../models/user.model");
 
 const lockSignupVarification = (req, res, next) => {

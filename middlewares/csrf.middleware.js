@@ -2,8 +2,8 @@ const { v4: getID } = require("uuid");
 
 const csrf = (req, res, next) => {
   if (req.method === "GET") {
+    res.setHeader("Cache-Control", "no-store");
     const csrfToken = getID();
-    // console.log("I am Executed!");
     res.locals.csrfToken = csrfToken;
     req.session.csrfToken = csrfToken;
   } else {
