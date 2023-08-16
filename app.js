@@ -18,7 +18,10 @@ const csrf = require("./middlewares/csrf.middleware");
 const getCart = require("./middlewares/getCart.middleware");
 const authMiddleware = require("./middlewares/auth.middleware");
 const getUserImage = require("./middlewares/getUserImage.milddleware");
-const { expressDefaultErrorHandler, pageNotFound } = require("./middlewares/errorHandler.middlewares");
+const {
+  expressDefaultErrorHandler,
+  pageNotFound,
+} = require("./middlewares/errorHandler.middlewares");
 const clearVerificationData = require("./middlewares/clearVerificationData.middleware");
 
 const helmetConfig = require("./config/helmet.config");
@@ -30,6 +33,18 @@ app.set("view engine", "ejs");
 
 app.use(helmet(helmetConfig()));
 app.use(compression());
+
+if (process.env.NODE_ENV !== "production") {
+  const morgan = require("morgan");
+  const {
+    morganFormatConfig,
+    morganSuccessConfig,
+    morganErrorConfig,
+  } = require("./config/morgan.config");
+
+  app.use(morgan(morganFormatConfig, morganSuccessConfig()));
+  app.use(morgan(morganFormatConfig, morganErrorConfig()));
+}
 
 app.use(session(sessionConfig()));
 
@@ -56,8 +71,10 @@ app.use("/admin", adminRoutes);
 app.use(pageNotFound);
 app.use(expressDefaultErrorHandler);
 
-db.connectToDatabase().then(() => {
+db.connectToDatabase()
+  .then(() => {
     app.listen(process.env.PORT || 3000);
-}).catch((error) => {
+  })
+  .catch((error) => {
     console.log("Fail to connect the database!");
-});
+  });

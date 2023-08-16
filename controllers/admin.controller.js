@@ -133,19 +133,47 @@ const editProduct = async (req, res, next) => {
 };
 
 const deleteProduct = async (req, res, next) => {
+    const items = +process.env.ITEMS_PER_PAGE;
     const productId = req.params.id;
-    let deletedProductImage;
+    let deletedProductImage, numOfProducts, productDoc, productDocs;
     try {
+        numOfProducts = await Product.countProducts();
+        if(numOfProducts === 0) return res.status(404).json({ success: false, message: "Deletion not possible!" });
         const product = await Product.fetchProductById(productId);
         if(!product) return res.status(404).json({ message: "Invalid product id." });
+        let products = await Product.fetchProductsPerPage(req.session.page + 1, items, { title: 1, image: 1, price: 1 }, 1);
+        if(products.length > 0) {
+            productDoc = products[0];
+            productDoc.price = res.locals.INR.format(productDoc.price);
+            productDoc.imagePath = `/public/static/essential/assets/product-images/${productDoc.image}`;
+        } else {
+            products = await Product.fetchProductsPerPage(req.session.page, items, { title: 1, image: 1, price: 1 });
+            products = products.filter(product => product._id.toString() !== productId);
+            if(products.length === 0 && req.session.page > 1) {
+                req.session.page -= 1;
+                products = await Product.fetchProductsPerPage(req.session.page, items, { title: 1, image: 1, price: 1 });
+                productDocs = products.map(product => {
+                    product.imagePath = `/public/static/essential/assets/product-images/${product.image}`;
+                    product.price = res.locals.INR.format(product.price);
+                    return product;
+                });
+            }
+        }
+
         deletedProductImage = product.image;
         await Product.delete(productId);
         await removeImage("product-images", deletedProductImage);
     } catch(error) {
         return next(error);
     }
-
-    res.status(203).json({ success: true });
+    
+    res.status(203).json({ 
+        success: true,
+        productCount: numOfProducts - 1,
+        itemsPerPage: items,
+        product: productDoc,
+        products: productDocs || []
+    });
 };
 
 const getManageOrders = async (req, res, next) => {

@@ -17,13 +17,13 @@ class Product {
     return db.getDb().collection("products").countDocuments();
   }
 
-  static fetchProductsPerPage(page, projection, items) {
+  static fetchProductsPerPage(page, items, projection = {}, limit) {
     return db
       .getDb()
       .collection("products")
       .find()
       .skip((page - 1) * items)
-      .limit(items)
+      .limit(limit || items)
       .project(projection)
       .toArray();
   }

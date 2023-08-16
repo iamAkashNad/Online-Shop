@@ -1,4 +1,7 @@
 const deleteProductButtons = document.querySelectorAll(".delete-product-btn");
+const paginationSection = document.getElementById("page-controller");
+const adminControlPara = document.getElementById("admin-use");
+const productsList = document.getElementById("products-list");
 
 const deleteProduct = async (event) => {
     event.preventDefault();
@@ -21,6 +24,22 @@ const deleteProduct = async (event) => {
     }
 
     event.target.parentElement.parentElement.parentElement.parentElement.remove();
+    const responseData = await response.json();
+    const { productCount, itemsPerPage, product, products } = responseData;
+
+    if(product) {
+        const productItem = createProduct(product, csrfToken);
+        productsList.appendChild(productItem);
+    } else if(products.length > 0) {
+        for(const product of products) {
+            productsList.appendChild(createProduct(product, csrfToken));
+        }
+    }
+
+    if(productCount === 0) {
+        adminControlPara.textContent = "No product has been added yet to the shop - Maybe you can add some!";
+    }
+    if(paginationSection && productCount <= itemsPerPage) paginationSection.remove();
 };
 
 for(const deleteProductButton of deleteProductButtons) {

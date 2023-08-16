@@ -9,8 +9,7 @@
             <a class="btn btn-light" href="/products/<%= product._id %>">View</a>
             <% if(locals.userStatus && locals.userStatus.isAdmin) { %>
                 <a class="btn btn-light" href="/admin/products/<%= product._id %>/edit">Edit</a>
-                <form class="delete-btn delete-product-btn" data-productid="<%= product._id %>" data-csrftoken="<%= locals.csrfToken%>">
-                    <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+                <form class="delete-btn delete-product-btn" data-productid="<%= product._id %>" data-csrftoken="<%= locals.csrfToken %>">
                     <button class="btn btn-alt-light">Delete</button>
                 </form>
             <% } %>

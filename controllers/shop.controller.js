@@ -11,7 +11,7 @@ const Product = require("../models/product.model");
 const { sendEmail } = require("../util/Emails/sendEmails.util");
 const { createInvoiceForOrder } = require("../util/createInvoice.util");
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = +process.env.ITEMS_PER_PAGE;
 
 const redirectToMain = (req, res) => {
   res.redirect("/products");
@@ -19,6 +19,8 @@ const redirectToMain = (req, res) => {
 
 const getProducts = async (req, res, next) => {
   let pageNo = +req.query.page || req.session.page || 1;
+
+  if(pageNo < 0) pageNo = 1;
   
   let products, numberOfProducts;
   try {
@@ -27,7 +29,7 @@ const getProducts = async (req, res, next) => {
       req.session.page = Math.ceil(numberOfProducts / ITEMS_PER_PAGE);
       return res.redirect("/");
     } else if(numberOfProducts == 0) pageNo = 1;
-    products = await Product.fetchProductsPerPage(pageNo, { title: 1, image: 1, price: 1 }, ITEMS_PER_PAGE);
+    products = await Product.fetchProductsPerPage(pageNo, ITEMS_PER_PAGE, { title: 1, image: 1, price: 1 });
   } catch (error) {
     return next(error);
   }
@@ -38,13 +40,14 @@ const getProducts = async (req, res, next) => {
     product.imagePath = `/public/static/essential/assets/product-images/${product.image}`;
     return product;
   });
+
   res.render("common/products", { 
     products,
     prevPage: pageNo - 1,
     currPage: pageNo,
     nextPage: pageNo + 1,
-    nextPageExists: pageNo * ITEMS_PER_PAGE < numberOfProducts,
-    lastPage: Math.ceil(numberOfProducts / ITEMS_PER_PAGE)
+    nextPageExists: (pageNo * ITEMS_PER_PAGE) < numberOfProducts,
+    lastPage: Math.max(1, Math.ceil(numberOfProducts / ITEMS_PER_PAGE))
   });
 };
 

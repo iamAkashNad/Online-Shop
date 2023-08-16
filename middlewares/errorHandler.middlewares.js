@@ -3,6 +3,7 @@ const pageNotFound = (req, res) => {
 };
 
 const expressDefaultErrorHandler = (error, req, res, next) => {
+    console.log(error.message);
     res.status(500).render("common/500");
 };
 
