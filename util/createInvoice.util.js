@@ -6,15 +6,15 @@ exports.createInvoiceForOrder = (pdf, order, INR) => {
     pdf.fontSize(30).text("INVOICE", 50, 45);
     pdf.underline(20, 70, 570, 10);
 
-    pdf.fontSize(12).text(`Order Date: ${order.hrDate}`, 370, 115);
-    pdf.fontSize(12).text(`Order Status: ${order.status}`, 410, 132);
+    pdf.fontSize(12).text(`Order Status: ${order.status.toUpperCase()}`, 370, 105);
 
     pdf.fontSize(14).text("Billed To:", 50, 95)
     pdf.fontSize(12).text(`Name: ${order.user.name}`, 50, 115);
     pdf.fontSize(12).text(`Email: ${order.user.email}`, 50, 132);
     pdf.fontSize(12).text(`Address: ${order.user.address.city + ", " + order.user.address.country + " (" + order.user.address.postalCode + ")"}`, 50, 149);
+    pdf.fontSize(12).text(`Order Date: ${order.hrDate}`, 50, 166);
 
-    pdf.underline(20, 170, 570, 10);
+    pdf.underline(20, 180, 570, 10);
     
     pdf.fill("#005252", "even-odd");
     pdf.fontSize(12).text("Product", 30, 230);
